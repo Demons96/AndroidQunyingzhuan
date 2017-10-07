@@ -1,0 +1,11 @@
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="1000"
+    android:propertyName="pathData"
+    android:valueFrom="
+        M 25 50
+        a 25,25 0 1,0 50,0"
+    android:valueTo="
+        M 25 50
+        a 25,20 0 1,0 50,0"
+    android:valueType="pathType" />
+<!--此代码用不了，得改-->
