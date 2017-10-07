@@ -1,17 +1,17 @@
-1:  Systemyou        //34  ViewµÄ²âÁ¿
-2:  ViewLayou        //59  ÊÂ¼şÀ¹½Ø»úÖÆ
-3:  MyListView       //66  ListView ³£ÓÃÊ¹ÓÃ¼¼ÇÉ
-4:  DragViewTest     //88  Scroll·ÖÎö
-5:  MyLayerText      //110 2D»æÍ¼Ö®Ô²
-6:  MyApplication    //117 »æÍ¼¼¼ÇÉ£¬ÖÓ
-7:  Image            //122 ¸Ä±äÉ«¹âÊôĞÔ
-8:  ImageShape       //137 Í¼ĞÎÌØĞ§´¦Àí
-9:  ImagePath        //153 ±Ê´¥
-10: SurfaceViewTest  //155 SurfaceView×Ó½ø³Ì»æÍ¼
-11: ViewAnim         //163 View¶¯»­¿ò¼Ü
-12: Anim             //188 ¶¯»­ÌØĞ§
-13: Activity         //196 ActivityĞÎÌ¬
-14: ActivityStack    //200 AndroidMainifestÆô¶¯Ä£Ê½
+- 1:  Systemyou Â  Â  Â   //34  Viewçš„æµ‹é‡
+- 2:  ViewLayou        //59  äº‹ä»¶æ‹¦æˆªæœºåˆ¶
+- 3:  MyListView       //66  ListView å¸¸ç”¨ä½¿ç”¨æŠ€å·§
+- 4:  DragViewTest     //88  Scrollåˆ†æ
+- 5:  MyLayerText      //110 2Dç»˜å›¾ä¹‹åœ†
+- 6:  MyApplication    //117 ç»˜å›¾æŠ€å·§ï¼Œé’Ÿ
+- 7:  Image            //122 æ”¹å˜è‰²å…‰å±æ€§
+- 8:  ImageShape       //137 å›¾å½¢ç‰¹æ•ˆå¤„ç†
+- 9:  ImagePath        //153 ç¬”è§¦
+- 10: SurfaceViewTest  //155 SurfaceViewå­è¿›ç¨‹ç»˜å›¾
+- 11: ViewAnim         //163 ViewåŠ¨ç”»æ¡†æ¶
+- 12: Anim             //188 åŠ¨ç”»ç‰¹æ•ˆ
+- 13: Activity         //196 Activityå½¢æ€
+- 14: ActivityStack    //200 AndroidMainifestå¯åŠ¨æ¨¡å¼
 
-XX: XPuzzle          //304 Æ´Í¼ÓÎÏ·
-XX: Game2048         //325 2048ÓÎÏ·
+- XX: XPuzzle          //304 æ‹¼å›¾æ¸¸æˆ
+- XX: Game2048         //325 2048æ¸¸æˆ
