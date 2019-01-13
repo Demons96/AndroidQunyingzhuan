@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -26,5 +27,23 @@
         android:layout_height="wrap_content"
         android:text="Drop Animation"
         android:onClick="btnDrop" />
+
+    <Button
+        android:text="测试平移"
+        android:onClick="btnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="同时运行多个动画"
+        android:onClick="btnText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="顺序播放动画"
+        android:onClick="btnText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

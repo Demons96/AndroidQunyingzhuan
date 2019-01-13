@@ -21,11 +21,8 @@ public class NotifyTest extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notify);
-        mData = new ArrayList<String>();
 
-        for (int i = 0; i < 20; i++) {
-            mData.add("" + i);
-        }
+        initData(); // 初始化数据
 
         mListView = (ListView) findViewById(R.id.listView);
         mAdapter = new NotifyAdapter(this, mData);
@@ -41,5 +38,12 @@ public class NotifyTest extends Activity {
         mData.add("new");
         mAdapter.notifyDataSetChanged();    //通知ListView更改数据源
         mListView.setSelection(mData.size() - 1);
+    }
+
+    private void initData() {
+        mData = new ArrayList<String>();
+        for (int i = 0; i < 20; i++) {
+            mData.add("" + i);
+        }
     }
 }

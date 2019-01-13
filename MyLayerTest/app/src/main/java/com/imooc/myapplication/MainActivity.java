@@ -14,11 +14,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new MyLayer(this));
+        setContentView(R.layout.activity_main);
+//        setContentView(new MyLayer(this));
     }
 
     public class MyLayer extends View {
-
         private Paint mPaint;
         private static final int LAYER_FLAGS =
                         Canvas.MATRIX_SAVE_FLAG |
@@ -36,11 +36,14 @@ public class MainActivity extends Activity {
         protected void onDraw(Canvas canvas) {
             canvas.drawColor(Color.WHITE);
             mPaint.setColor(Color.BLUE);
-            canvas.drawCircle(150, 150, 100, mPaint);
 
-            canvas.saveLayerAlpha(0, 0, 400, 400, 0, LAYER_FLAGS);
-            mPaint.setColor(Color.RED);
-            canvas.drawCircle(200, 200, 100, mPaint);
+            canvas.drawCircle(150, 150, 100, mPaint);   // 画圆
+
+            canvas.drawLine(250, 250, 500, 500, mPaint);    // 画线
+
+//            canvas.saveLayerAlpha(0, 0, 400, 400, 0, LAYER_FLAGS);
+//            mPaint.setColor(Color.RED);
+//            canvas.drawCircle(200, 200, 100, mPaint);
             canvas.restore();
         }
     }

@@ -12,18 +12,17 @@ import android.widget.Button;
 import com.imooc.game2048.R;
 import com.imooc.game2048.config.Config;
 
+/**
+ * 设置界面
+ */
 public class ConfigPreference extends Activity implements OnClickListener {
 
-    private Button mBtnGameLines;
-
-    private Button mBtnGoal;
-
-    private Button mBtnBack;
-
-    private Button mBtnDone;
+    private Button mBtnGameLines;   // 行列数
+    private Button mBtnGoal;    // 设置最高分数
+    private Button mBtnBack;    // 取消
+    private Button mBtnDone;    // 确定
 
     private String[] mGameLinesList;
-
     private String[] mGameGoalList;
 
     private AlertDialog.Builder mBuilder;
@@ -40,12 +39,15 @@ public class ConfigPreference extends Activity implements OnClickListener {
         mBtnGoal = (Button) findViewById(R.id.btn_goal);
         mBtnBack = (Button) findViewById(R.id.btn_back);
         mBtnDone = (Button) findViewById(R.id.btn_done);
+
         mBtnGameLines.setText("" + Config.mSp.getInt(Config.KEY_GAME_LINES, 4));
         mBtnGoal.setText("" + Config.mSp.getInt(Config.KEY_GAME_GOAL, 2048));
+
         mBtnGameLines.setOnClickListener(this);
         mBtnGoal.setOnClickListener(this);
         mBtnBack.setOnClickListener(this);
         mBtnDone.setOnClickListener(this);
+
         mGameLinesList = new String[]{"4", "5", "6"};
         mGameGoalList = new String[]{"1024", "2048", "4096"};
     }
@@ -64,10 +66,9 @@ public class ConfigPreference extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.btn_gamelines:
                 mBuilder = new AlertDialog.Builder(this);
-                mBuilder.setTitle("choose the lines of the game");
+                mBuilder.setTitle("请选择你游戏的行列数");
                 mBuilder.setItems(mGameLinesList,
                         new DialogInterface.OnClickListener() {
-
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mBtnGameLines.setText(mGameLinesList[which]);
@@ -77,10 +78,9 @@ public class ConfigPreference extends Activity implements OnClickListener {
                 break;
             case R.id.btn_goal:
                 mBuilder = new AlertDialog.Builder(this);
-                mBuilder.setTitle("choose the goal of the game");
+                mBuilder.setTitle("请选择游戏的最大分数");
                 mBuilder.setItems(mGameGoalList,
                         new DialogInterface.OnClickListener() {
-
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mBtnGoal.setText(mGameGoalList[which]);

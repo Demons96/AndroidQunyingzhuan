@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:text="configuration"
+        android:text="配置"
         android:textSize="36sp" />
 
     <View
@@ -22,6 +22,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tv_gamelines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="行列数"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/btn_gamelines"
@@ -35,33 +45,13 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/tv_contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
-        android:text="Contact Me"
-        android:textSize="24sp" />
-
-    <TextView
         android:id="@+id/tv_targetgoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_gamelines"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="TargetGoal"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/tv_gamelines"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="GameLines"
+        android:text="最高分"
         android:textSize="24sp" />
 
     <Button
@@ -75,15 +65,6 @@
         android:text="2048"
         android:textSize="24sp" />
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_above="@id/tv_contact"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="12dp"
-        android:background="#FFFFFF" />
-
     <Button
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
@@ -91,7 +72,7 @@
         android:layout_above="@+id/view2"
         android:layout_alignLeft="@+id/view2"
         android:background="@drawable/white_button"
-        android:text="Back"
+        android:text="返回"
         android:textSize="24sp" />
 
     <Button
@@ -101,7 +82,26 @@
         android:layout_above="@+id/view2"
         android:layout_alignRight="@+id/view2"
         android:background="@drawable/white_button"
-        android:text="Done"
+        android:text="确定"
         android:textSize="24sp" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_above="@id/tv_contact"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"
+        android:background="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tv_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:text="联系我QQ:995415981"
+        android:textSize="16sp" />
 
 </RelativeLayout>

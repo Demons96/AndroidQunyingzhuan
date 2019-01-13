@@ -31,15 +31,13 @@ public class MyScrollView extends ViewGroup {
         initView(context);
     }
 
-    public MyScrollView(Context context, AttributeSet attrs,
-                        int defStyleAttr) {
+    public MyScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context);
     }
 
     private void initView(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(
-                Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
         mScreenHeight = dm.heightPixels;
@@ -48,8 +46,7 @@ public class MyScrollView extends ViewGroup {
 
     /**
      * @param widthMeasureSpec
-     * @param heightMeasureSpec
-     * 1、使用遍历的方式通知子View进行测量
+     * @param heightMeasureSpec 1、使用遍历的方式通知子View进行测量
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -67,8 +64,7 @@ public class MyScrollView extends ViewGroup {
      * @param l
      * @param t
      * @param r
-     * @param b
-     * 2、确定子View的位置
+     * @param b       2、确定子View的位置
      */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -83,8 +79,7 @@ public class MyScrollView extends ViewGroup {
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() != View.GONE) {
-                child.layout(l, i * mScreenHeight,
-                        r, (i + 1) * mScreenHeight);
+                child.layout(l, i * mScreenHeight, r, (i + 1) * mScreenHeight);
             }
         }
     }

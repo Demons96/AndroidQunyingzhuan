@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 /**
  * LayoutParams
@@ -48,10 +49,15 @@ public class DragView3 extends View {
                 // 计算偏移量
                 int offsetX = x - lastX;
                 int offsetY = y - lastY;
-                ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
-//                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getLayoutParams();
+                // 根据view所在的父布局来设置不同类型
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getLayoutParams();
+
+                // 使用ViewGroup.MarginLayoutParams可以达到一样的效果
+//                ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
                 layoutParams.leftMargin = getLeft() + offsetX;
+//                layoutParams.rightMargin = getRight() + offsetX;
                 layoutParams.topMargin = getTop() + offsetY;
+//                layoutParams.bottomMargin = getBottom() + offsetY;
                 setLayoutParams(layoutParams);
                 break;
         }

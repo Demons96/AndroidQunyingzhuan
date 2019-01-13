@@ -19,21 +19,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageView0 = (ImageView) findViewById(R.id.image0);
-        imageView1 = (ImageView) findViewById(R.id.image1);
-        imageView2 = (ImageView) findViewById(R.id.image2);
-        imageView3 = (ImageView) findViewById(R.id.image3);
-        imageView0.setOnClickListener(this);
-        imageView1.setOnClickListener(this);
-        imageView2.setOnClickListener(this);
-        imageView3.setOnClickListener(this);
-    }
-
-    private void animate(ImageView imageView) {
-        Drawable drawable = imageView.getDrawable();
-        if (drawable instanceof Animatable) {
-            ((Animatable) drawable).start();
-        }
+        findViewById(R.id.image0).setOnClickListener(this);
+        findViewById(R.id.image1).setOnClickListener(this);
+        findViewById(R.id.image2).setOnClickListener(this);
+        findViewById(R.id.image3).setOnClickListener(this);
     }
 
     @Override
@@ -52,5 +41,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 animate(imageView3);
                 break;
         }
+    }
+
+    private void animate(ImageView imageView) {
+        ((Animatable)imageView.getDrawable()).start();
+//        Drawable drawable = imageView.getDrawable();
+//        if (drawable instanceof Animatable) {
+//            ((Animatable) drawable).start();
+//        }
     }
 }

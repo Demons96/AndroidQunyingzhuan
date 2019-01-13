@@ -11,6 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 /**
+ * 这是一个类似画板的东西
  * SurfaceView:
  * 适用于被动更新
  * 通过子线程进行界面的刷新
@@ -20,7 +21,7 @@ public class SimpleDraw extends SurfaceView implements SurfaceHolder.Callback, R
 
     private SurfaceHolder mHolder;
     private Canvas mCanvas;
-    private boolean mIsDrawing; //子线程标志位
+    private boolean mIsDrawing; //子线程标志位，控制子线程
     private Path mPath;
     private Paint mPaint;
 
@@ -76,7 +77,6 @@ public class SimpleDraw extends SurfaceView implements SurfaceHolder.Callback, R
     }
     /******************************/
 
-
     @Override
     public void run() {
         long start = System.currentTimeMillis();
@@ -84,7 +84,7 @@ public class SimpleDraw extends SurfaceView implements SurfaceHolder.Callback, R
             draw();
         }
         long end = System.currentTimeMillis();
-        // 50 - 100
+        // 50 ~ 100
         if (end - start < 100) {
             try {
                 Thread.sleep(100 - (end - start));

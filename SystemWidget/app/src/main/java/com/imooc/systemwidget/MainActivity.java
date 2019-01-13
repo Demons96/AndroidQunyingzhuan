@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends Activity {
-
     private Intent mIntent;
 
     @Override
@@ -36,24 +35,24 @@ public class MainActivity extends Activity {
         startActivity(mIntent);
     }
 
-    //自定义标题
+    //44自定义标题
     public void btnTopBar(View view) {
         startActivity(new Intent(this, TopBarTest.class));
     }
 
-    //圆柱比例图
+    //51圆柱比例图
     public void btnCircleProgress(View view) {
         mIntent.putExtra("flag", 3);
         startActivity(mIntent);
     }
 
-    //音频
+    //52音频
     public void btnVolumeView(View view) {
         mIntent.putExtra("flag", 4);
         startActivity(mIntent);
     }
 
-    //自定义ViewGroup
+    //54自定义ViewGroup
     public void btnMyScrollView(View view) {
         mIntent.putExtra("flag", 5);
         startActivity(mIntent);

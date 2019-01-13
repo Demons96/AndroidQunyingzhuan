@@ -15,69 +15,7 @@ public class DragViewGroup extends FrameLayout {
 
     private ViewDragHelper mViewDragHelper;
     private View mMenuView, mMainView;
-    private int mWidth;
-
-    public DragViewGroup(Context context) {
-        super(context);
-        initView();
-    }
-
-    public DragViewGroup(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initView();
-    }
-
-    public DragViewGroup(Context context,
-                         AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView();
-    }
-
-    // 按顺序定义子View
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        mMenuView = getChildAt(0);
-        mMainView = getChildAt(1);
-    }
-
-    // 获取View的宽度
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mWidth = mMenuView.getMeasuredWidth();
-    }
-
-    /**
-     * ViewDragHelper通常定义在一个ViewGroup内部
-     * 通过静态工厂方法初始化
-     */
-    private void initView() {
-        //第一个参数：要监听的View通常需要ViewGroup、第二个参数：Callback回掉
-        mViewDragHelper = ViewDragHelper.create(this, callback);
-    }
-
-    //事件拦截
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return mViewDragHelper.shouldInterceptTouchEvent(ev);
-    }
-
-    //事件处理
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        //将触摸事件传递给ViewDragHelper,此操作必不可少
-        mViewDragHelper.processTouchEvent(event);
-        return true;    //事件处理到此结束，不向上层汇报
-    }
-
-    //通过Scroll实现平滑移动，所以要重写
-    @Override
-    public void computeScroll() {
-        if (mViewDragHelper.continueSettling(true)) {
-            ViewCompat.postInvalidateOnAnimation(this);
-        }
-    }
+    private int mWidth; // 可根据View的宽度来处理滑动后的效果
 
     //回掉处理
     private ViewDragHelper.Callback callback = new ViewDragHelper.Callback() {
@@ -153,4 +91,65 @@ public class DragViewGroup extends FrameLayout {
 //            super.onViewPositionChanged(changedView, left, top, dx, dy);
 //        }
     };
+
+    public DragViewGroup(Context context) {
+        super(context);
+        initView();
+    }
+
+    public DragViewGroup(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initView();
+    }
+
+    public DragViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView();
+    }
+
+    /**
+     * ViewDragHelper通常定义在一个ViewGroup内部
+     * 通过静态工厂方法初始化
+     */
+    private void initView() {
+        //第一个参数：要监听的View通常需要ViewGroup、第二个参数：Callback回掉
+        mViewDragHelper = ViewDragHelper.create(this, callback);
+    }
+
+    // 按顺序定义子View
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        mMenuView = getChildAt(0);
+        mMainView = getChildAt(1);
+    }
+
+    // 获取View的宽度
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mWidth = mMenuView.getMeasuredWidth();
+    }
+
+    //事件拦截
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return mViewDragHelper.shouldInterceptTouchEvent(ev);
+    }
+
+    //事件处理
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //将触摸事件传递给ViewDragHelper,此操作必不可少
+        mViewDragHelper.processTouchEvent(event);
+        return true;    //事件处理到此结束，不向上层汇报
+    }
+
+    //通过Scroll实现平滑移动，所以要重写
+    @Override
+    public void computeScroll() {
+        if (mViewDragHelper.continueSettling(true)) {
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+    }
 }

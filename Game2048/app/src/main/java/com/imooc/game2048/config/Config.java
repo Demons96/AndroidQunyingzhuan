@@ -3,6 +3,9 @@ package com.imooc.game2048.config;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+/**
+ * 全局设置
+ */
 public class Config extends Application {
 
     /**
@@ -11,12 +14,12 @@ public class Config extends Application {
     public static SharedPreferences mSp;
 
     /**
-     * Game Goal
+     * Game Goal 最高分数，达到就赢
      */
     public static int mGameGoal;
 
     /**
-     * GameView行列数
+     * GameView 行列数
      */
     public static int mGameLines;
 

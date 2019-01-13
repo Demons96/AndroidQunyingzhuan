@@ -3,6 +3,7 @@ package com.imooc.anim;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,5 +25,6 @@ public class TimerTest extends Activity {
         });
         valueAnimator.setDuration(3000);
         valueAnimator.start();
+        Log.d("Text", "tvTimer: 额 为什么不变");
     }
 }

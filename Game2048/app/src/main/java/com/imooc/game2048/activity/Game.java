@@ -68,12 +68,15 @@ public class Game extends Activity implements OnClickListener {
         mTvScore = (TextView) findViewById(R.id.scroe);
         mTvGoal = (TextView) findViewById(R.id.tv_Goal);
         mTvHighScore = (TextView) findViewById(R.id.record);
+
         mBtnRestart = (Button) findViewById(R.id.btn_restart);
         mBtnRevert = (Button) findViewById(R.id.btn_revert);
         mBtnOptions = (Button) findViewById(R.id.btn_option);
+
         mBtnRestart.setOnClickListener(this);
         mBtnRevert.setOnClickListener(this);
         mBtnOptions.setOnClickListener(this);
+
         mHighScore = Config.mSp.getInt(Config.KEY_HIGH_SCROE, 0);
         mGoal = Config.mSp.getInt(Config.KEY_GAME_GOAL, 2048);
         mTvHighScore.setText("" + mHighScore);

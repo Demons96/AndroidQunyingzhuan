@@ -2,6 +2,7 @@ package com.imooc.viewanim;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -10,7 +11,9 @@ import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 
+// 这个是视图动画，是Android3.0之前就有的Animation存在局限性，只能显示改变的动画不能响应事件
 public class MainActivity extends Activity {
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +23,25 @@ public class MainActivity extends Activity {
 
     // 透明度动画
     public void btnAlpha(View view) {
-        AlphaAnimation aa = new AlphaAnimation(0, 1);
-        aa.setDuration(1000);
-        view.startAnimation(aa);
+        AlphaAnimation animation = new AlphaAnimation(0, 1);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                Log.d(TAG, "开始：onAnimationStart: ");
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Log.d(TAG, "结束：onAnimationEnd: ");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                Log.d(TAG, "重复：onAnimationRepeat: ");
+            }
+        });
+        animation.setDuration(1000);
+        view.startAnimation(animation);
     }
 
     // 旋转
@@ -66,6 +85,7 @@ public class MainActivity extends Activity {
 
     // 动画合集
     public void btnSet(View view) {
+        // 动画集合
         AnimationSet as = new AnimationSet(true);
         as.setDuration(1000);
 

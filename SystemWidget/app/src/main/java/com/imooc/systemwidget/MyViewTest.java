@@ -2,6 +2,7 @@ package com.imooc.systemwidget;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 /**
  * 根据传入的flag启动相应的布局画面
@@ -25,7 +26,7 @@ public class MyViewTest extends Activity {
                 break;
             case 3:
                 setContentView(R.layout.circle_progress);
-                CircleProgressView circle = (CircleProgressView) findViewById(R.id.circle);
+                final CircleProgressView circle = (CircleProgressView) findViewById(R.id.circle);
                 circle.setSweepValue(66);
                 break;
             case 4:

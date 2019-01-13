@@ -1,5 +1,6 @@
 package com.imooc.systemwidget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+@SuppressLint("AppCompatCustomView")
 public class ShineTextView extends TextView {
 
     private LinearGradient mLinearGradient;
@@ -39,8 +41,8 @@ public class ShineTextView extends TextView {
         if (mViewWidth == 0) {
             mViewWidth = getMeasuredWidth();
             if (mViewWidth > 0) {
-                mPaint = getPaint();    //获取当前绘制TextView的Paint对象
-                //给其设置原生没有，用来不断变化的LinearGradient属性
+                mPaint = getPaint();    // 获取当前绘制TextView的Paint对象
+                // 给其设置原生没有，用来不断变化的LinearGradient属性
                 mLinearGradient = new LinearGradient(
                         0,
                         0,

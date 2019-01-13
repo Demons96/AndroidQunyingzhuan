@@ -17,10 +17,10 @@ public class ScrollHideListView extends Activity {
     private Toolbar mToolbar;
     private ListView mListView;
     private String[] mStr = new String[20];
-    private int mTouchSlop;     //最低滑动距离，用来判断是否滑动
-    private float mFirstY;
-    private float mCurrentY;
-    private int direction;
+    private int mTouchSlop;     // 最低滑动距离，用来判断是否滑动
+    private float mFirstY;      // 第一个纵坐标
+    private float mCurrentY;    // 移动中额
+    private int direction;      // 方向
     private ObjectAnimator mAnimator;
     private boolean mShow = true;
 
@@ -29,10 +29,11 @@ public class ScrollHideListView extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scroll_hide);
 
-        //获取系统认为最低的滑动距离
-        mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mListView = (ListView) findViewById(R.id.listview);
+
+        //获取系统认为最低的滑动距离
+        mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
 
         for (int i = 0; i < mStr.length; i++) {
             mStr[i] = "Item " + i;
@@ -69,9 +70,9 @@ public class ScrollHideListView extends Activity {
                     case MotionEvent.ACTION_MOVE:
                         mCurrentY = event.getY();
                         if (mCurrentY - mFirstY > mTouchSlop) {
-                            direction = 0;// down
+                            direction = 0;  // down
                         } else if (mFirstY - mCurrentY > mTouchSlop) {
-                            direction = 1;// up
+                            direction = 1;  // up
                         }
                         if (direction == 1) {
                             if (mShow) {

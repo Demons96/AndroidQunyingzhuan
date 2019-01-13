@@ -18,7 +18,7 @@ public class FocusListViewAdapter extends BaseAdapter {
 
     private List<String> mData;
     private Context mContext;
-    private int mCurrentItem = 0;
+    private int mCurrentItem = 0;   // 是否为点击的那个item
 
     public FocusListViewAdapter(Context context, List<String> data) {
         this.mContext = context;
@@ -58,17 +58,15 @@ public class FocusListViewAdapter extends BaseAdapter {
         return layout;
     }
 
-    public void setCurrentItem(int currentItem) {
-        this.mCurrentItem = currentItem;
-    }
-
-    //通过以下两种方法给Item设置两种不同的布局
+    // 通过以下两种方法给Item设置两种不同的布局
+    // 点击后的布局
     private View addFocusView(int i) {
         ImageView iv = new ImageView(mContext);
         iv.setImageResource(R.drawable.ic_launcher);
         return iv;
     }
 
+    // 正常布局
     private View addNormalView(int i) {
         LinearLayout layout = new LinearLayout(mContext);
         layout.setOrientation(LinearLayout.HORIZONTAL);
@@ -88,5 +86,9 @@ public class FocusListViewAdapter extends BaseAdapter {
         layout.setGravity(Gravity.CENTER);
 
         return layout;
+    }
+
+    public void setCurrentItem(int currentItem) {
+        this.mCurrentItem = currentItem;
     }
 }

@@ -5,9 +5,10 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.widget.ListView;
 
+// 扩展原生的ListView使其具有弹性效果
 public class FlexibleListView extends ListView {
 
-    private static int mMaxOverDistance = 50;
+    private static int mMaxOverDistance = 50;   // 设置弹性值
     private Context mContext;
 
     public FlexibleListView(Context context, AttributeSet attrs,
@@ -35,7 +36,7 @@ public class FlexibleListView extends ListView {
      */
     private void initView() {
         DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
-        float density = metrics.density;
+        float density = metrics.density;    // density：密度
         mMaxOverDistance = (int) (density * mMaxOverDistance);
     }
 

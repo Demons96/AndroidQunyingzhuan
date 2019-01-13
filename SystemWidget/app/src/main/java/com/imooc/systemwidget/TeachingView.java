@@ -27,12 +27,12 @@ public class TeachingView extends View {
 
     /**
      * @param widthMeasureSpec：宽
-     * @param heightMeasureSpec：高
-     * 定义画多大的View
+     * @param heightMeasureSpec：高 定义画多大的View
      */
     @Override
     protected void onMeasure(int widthMeasureSpec,
                              int heightMeasureSpec) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         setMeasuredDimension(
                 measureWidth(widthMeasureSpec),
                 measureHeight(heightMeasureSpec));
@@ -43,14 +43,15 @@ public class TeachingView extends View {
      * @return 返回对应模式下的大小
      * MeasureSpec是一个32位的int值，高2位为测量模式，底30位为测量的大小。
      * EXACTLY:精确模式，指定数值或者为match_parent
-     * AT_MOST:最大值模式，wrap_content
+     * AT_MOST:最大值模式，wrap_content 想使用需重写
      * UNSPECIFIED:绘制自定义View时用
      */
-        private int measureWidth(int measureSpec) {
+    private int measureWidth(int measureSpec) {
         int result = 0;
         int specMode = MeasureSpec.getMode(measureSpec);    //从MeasureSpec中取出测量模式
         int specSize = MeasureSpec.getSize(measureSpec);    //从MeasureSpec中取出测量的大小
 
+        // exactly:精确模式，参数为具体的值dp或者wrap_content
         if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
         } else {
@@ -79,8 +80,7 @@ public class TeachingView extends View {
     }
 
     /**
-     * @param canvas
-     * 重写onDraw方法进行绘图
+     * @param canvas 重写onDraw方法进行绘图
      */
     @Override
     protected void onDraw(Canvas canvas) {

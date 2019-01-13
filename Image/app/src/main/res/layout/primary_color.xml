@@ -12,22 +12,60 @@
         android:layout_marginBottom="24dp"
         android:layout_marginTop="24dp" />
 
-    <SeekBar
-        android:id="@+id/seekbarHue"
+    <LinearLayout
+        android:id="@+id/seekbarHueLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageview" />
+        android:layout_below="@id/imageview" >
 
-    <SeekBar
-        android:id="@+id/seekbarSaturation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/seekbarHue" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="色调"/>
 
-    <SeekBar
-        android:id="@+id/seekbatLum"
+        <SeekBar
+            android:layout_weight="5"
+            android:id="@+id/seekbarHue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/seekbarSaturationLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/seekbarSaturation" />
+        android:layout_below="@id/seekbarHueLayout" >
+
+        <TextView
+            android:text="饱和度"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <SeekBar
+            android:id="@+id/seekbarSaturation"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seekbarSaturationLayout" >
+
+        <TextView
+            android:text="亮度"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <SeekBar
+            android:id="@+id/seekbatLum"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </RelativeLayout>

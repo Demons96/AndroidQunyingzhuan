@@ -6,17 +6,19 @@
 
     <!-- 自定义 -->
     <com.imooc.systemwidget.TeachingView
-        android:layout_width="400px"
-        android:layout_height="400px" />
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
 
     <!-- match_parent -->
     <com.imooc.systemwidget.TeachingView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 
     <!-- wrap_content -->
     <com.imooc.systemwidget.TeachingView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

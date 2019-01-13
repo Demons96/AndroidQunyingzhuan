@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import com.imooc.game2048.config.Config;
 
+/**
+ * 设置每个方块
+ */
 public class GameItem extends FrameLayout {
 
-    // Item显示数字
+    // Item（最小方块）显示数字
     private int mCardShowNum;
     // 数字Title
     private TextView mTvNum;
@@ -34,7 +37,8 @@ public class GameItem extends FrameLayout {
         setBackgroundColor(Color.GRAY);
         mTvNum = new TextView(getContext());
         setNum(mCardShowNum);
-        // 修改5X5时字体太大
+
+        // 根据设置的行数设置字体大小
         int gameLines = Config.mSp.getInt(Config.KEY_GAME_LINES, 4);
         if (gameLines == 4) {
             mTvNum.setTextSize(35);

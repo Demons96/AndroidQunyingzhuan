@@ -14,9 +14,12 @@ import java.util.List;
 
 public class PropertyTest extends Activity implements View.OnClickListener {
 
-    private int[] mRes = {R.id.imageView_a,
-            R.id.imageView_b, R.id.imageView_c,
-            R.id.imageView_d, R.id.imageView_e};
+    private int[] mRes = {
+            R.id.imageView_a,
+            R.id.imageView_b,
+            R.id.imageView_c,
+            R.id.imageView_d,
+            R.id.imageView_e};
     private List<ImageView> mImageViews = new ArrayList<ImageView>();
     private boolean mFlag = true;   // 小按钮是否为关闭状态
 
@@ -40,6 +43,9 @@ public class PropertyTest extends Activity implements View.OnClickListener {
                 } else {
                     closeAnim();
                 }
+                break;
+            case R.id.imageView_b:
+                Toast.makeText(this, "啊哈哈 这是b", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 Toast.makeText(PropertyTest.this, "ViewId:" + v.getId(), Toast.LENGTH_SHORT).show();

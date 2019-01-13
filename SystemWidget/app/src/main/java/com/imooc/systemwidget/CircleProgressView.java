@@ -12,25 +12,25 @@ import android.view.View;
  * 圆+圆弧的比例图
  */
 public class CircleProgressView extends View {
-
     private int mMeasureHeigth;
     private int mMeasureWidth;
-
+    //圆
     private Paint mCirclePaint;
     private float mCircleXY;    //圆的长度
     private float mRadius;      //圆的半径
 
+    //弧线，外接矩阵
     private Paint mArcPaint;
     private RectF mArcRectF;
     private float mSweepAngle;
     private float mSweepValue = 66;
 
+    //中间的字
     private Paint mTextPaint;
     private String mShowText;
     private float mShowTextSize;
 
-    public CircleProgressView(Context context, AttributeSet attrs,
-                              int defStyleAttr) {
+    public CircleProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -43,8 +43,7 @@ public class CircleProgressView extends View {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec,
-                             int heightMeasureSpec) {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         mMeasureWidth = MeasureSpec.getSize(widthMeasureSpec);
         mMeasureHeigth = MeasureSpec.getSize(heightMeasureSpec);
         setMeasuredDimension(mMeasureWidth, mMeasureHeigth);
@@ -60,12 +59,13 @@ public class CircleProgressView extends View {
         }
 
         //圆
-        mCircleXY = length / 2;     //中心圆的长取View长的一半
+        // 远点的坐标
+        mCircleXY = length / 2;
+        // 半径取屏幕宽的一半的一半
         mRadius = (float) (length * 0.5 / 2);
         mCirclePaint = new Paint();
         mCirclePaint.setAntiAlias(true);
-        mCirclePaint.setColor(getResources().getColor(
-                android.R.color.holo_blue_bright));
+        mCirclePaint.setColor(getResources().getColor(android.R.color.holo_blue_bright));
 
         //弧线，外接矩阵
         mArcRectF = new RectF(
@@ -76,8 +76,7 @@ public class CircleProgressView extends View {
         mSweepAngle = (mSweepValue / 100f) * 360f;
         mArcPaint = new Paint();
         mArcPaint.setAntiAlias(true);
-        mArcPaint.setColor(getResources().getColor(
-                android.R.color.holo_blue_bright));
+        mArcPaint.setColor(getResources().getColor(android.R.color.holo_blue_bright));
         mArcPaint.setStrokeWidth((float) (length * 0.1));
         mArcPaint.setStyle(Style.STROKE);
 
@@ -108,13 +107,14 @@ public class CircleProgressView extends View {
 
     private String setShowText() {
         this.invalidate();
-        return "Android Skill";
+        return "Android Skill：" + mSweepValue + "%";
     }
 
     public void forceInvalidate() {
         this.invalidate();
     }
 
+    // 设置百分比的比例
     public void setSweepValue(float sweepValue) {
         if (sweepValue != 0) {
             mSweepValue = sweepValue;

@@ -3,6 +3,7 @@ package com.imooc.customanim;
 import android.graphics.Matrix;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.Transformation;
 
 // 模拟电视关闭的效果
@@ -22,7 +23,8 @@ public class CustomTV extends Animation {
 
         setFillAfter(true);    // 动画结束后保留状态
 
-        setInterpolator(new AccelerateInterpolator());    // 设置默认插值器
+//        setInterpolator(new AccelerateInterpolator());    // 设置默认插值器
+        setInterpolator(new BounceInterpolator());    // 设置默认插值器
 
         mCenterWidth = width / 2;
         mCenterHeight = height / 2;

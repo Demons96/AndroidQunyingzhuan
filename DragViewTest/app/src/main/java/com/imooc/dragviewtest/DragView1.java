@@ -3,6 +3,7 @@ package com.imooc.dragviewtest;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -11,6 +12,7 @@ import android.view.View;
  * 调用其来设置显示位置
  */
 public class DragView1 extends View {
+    private static final String TAG = "DragView1";
 
     private int lastX;
     private int lastY;
@@ -38,15 +40,17 @@ public class DragView1 extends View {
     // 视图坐标方式
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int x = (int) event.getX();
+        int x = (int) event.getX();     // 视图坐标
         int y = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+//                Log.e(TAG, "ACTION_DOWN: x" + x + " y" + y);
                 // 记录触摸点坐标
                 lastX = x;
                 lastY = y;
                 break;
             case MotionEvent.ACTION_MOVE:
+//                Log.e(TAG, "ACTION_MOVE: x" + x + " y" + y);
                 // 计算偏移量
                 int offsetX = x - lastX;
                 int offsetY = y - lastY;

@@ -51,5 +51,10 @@
             android:textSize="20sp"
             android:text="I am hidden" />
     </LinearLayout>
+
+    <Button
+        android:text="这是一个测试按钮"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
 

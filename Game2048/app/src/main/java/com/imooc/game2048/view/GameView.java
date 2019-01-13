@@ -25,6 +25,8 @@ import com.imooc.game2048.config.Config;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 游戏面板 */
 public class GameView extends GridLayout implements OnTouchListener {
 
     // GameView对应矩阵
@@ -60,6 +62,37 @@ public class GameView extends GridLayout implements OnTouchListener {
 
     public void startGame() {
         initGameMatrix();
+//        initGameView(Config.mItemSize);
+    }
+
+    /**
+     * 初始化View
+     */
+    private void initGameMatrix() {
+        // 初始化矩阵
+        removeAllViews();
+        mScoreHistory = 0;  // 历史分数
+        Config.SCROE = 0;   // 现在的分数
+        Config.mGameLines = Config.mSp.getInt(Config.KEY_GAME_LINES, 4);    // 读取行列数到配置
+        mGameLines = Config.mGameLines;         // 从配置里取得行列存入变量
+        mHighScore = Config.mSp.getInt(Config.KEY_HIGH_SCROE, 0);   // 最高分数
+
+        mGameMatrix = new GameItem[mGameLines][mGameLines];
+        mGameMatrixHistory = new int[mGameLines][mGameLines];
+        mCalList = new ArrayList<Integer>();
+        mBlanks = new ArrayList<Point>();
+
+        setColumnCount(mGameLines);
+        setRowCount(mGameLines);
+        setOnTouchListener(this);
+
+        // 初始化View参数
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        display.getMetrics(metrics);
+
+        Config.mItemSize = metrics.widthPixels / Config.mGameLines;
         initGameView(Config.mItemSize);
     }
 
@@ -78,6 +111,73 @@ public class GameView extends GridLayout implements OnTouchListener {
         // 添加随机数字
         addRandomNum();
         addRandomNum();
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                saveHistoryMatrix();
+                mStartX = (int) event.getX();
+                mStartY = (int) event.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+                mEndX = (int) event.getX();
+                mEndY = (int) event.getY();
+                judgeDirection(mEndX - mStartX, mEndY - mStartY);
+                if (isMoved()) {
+                    addRandomNum();
+                    // 修改显示分数
+                    Game.getGameActivity().setScore(Config.SCROE, 0);
+                }
+                checkCompleted();
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
+    /**
+     * 获取空格Item数组
+     */
+    private void getBlanks() {
+        mBlanks.clear();
+        for (int i = 0; i < mGameLines; i++) {
+            for (int j = 0; j < mGameLines; j++) {
+                if (mGameMatrix[i][j].getNum() == 0) {
+                    mBlanks.add(new Point(i, j));
+                }
+            }
+        }
+    }
+
+    /**
+     * 生成动画
+     *
+     * @param target GameItem
+     */
+    private void animCreate(GameItem target) {
+        ScaleAnimation sa = new ScaleAnimation(0.1f, 1, 0.1f, 1,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        sa.setDuration(100);
+        target.setAnimation(null);
+        target.getItemView().startAnimation(sa);
+    }
+
+    /**
+     * 添加随机数字
+     */
+    private void addRandomNum() {
+        getBlanks();
+        if (mBlanks.size() > 0) {
+            int randomNum = (int) (Math.random() * mBlanks.size());
+            Point randomPoint = mBlanks.get(randomNum);
+            mGameMatrix[randomPoint.x][randomPoint.y].setNum(Math.random() > 0.2d ? 2 : 4);
+            animCreate(mGameMatrix[randomPoint.x][randomPoint.y]);
+        }
     }
 
     /**
@@ -100,33 +200,6 @@ public class GameView extends GridLayout implements OnTouchListener {
                 }
             }
         }
-    }
-
-    /**
-     * 添加随机数字
-     */
-    private void addRandomNum() {
-        getBlanks();
-        if (mBlanks.size() > 0) {
-            int randomNum = (int) (Math.random() * mBlanks.size());
-            Point randomPoint = mBlanks.get(randomNum);
-            mGameMatrix[randomPoint.x][randomPoint.y]
-                    .setNum(Math.random() > 0.2d ? 2 : 4);
-            animCreate(mGameMatrix[randomPoint.x][randomPoint.y]);
-        }
-    }
-
-    /**
-     * 生成动画
-     *
-     * @param target GameItem
-     */
-    private void animCreate(GameItem target) {
-        ScaleAnimation sa = new ScaleAnimation(0.1f, 1, 0.1f, 1,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        sa.setDuration(100);
-        target.setAnimation(null);
-        target.getItemView().startAnimation(sa);
     }
 
     /**
@@ -155,75 +228,6 @@ public class GameView extends GridLayout implements OnTouchListener {
                 || num == 32 || num == 64 || num == 128 || num == 256
                 || num == 512 || num == 1024);
         return flag;
-    }
-
-    /**
-     * 获取空格Item数组
-     */
-    private void getBlanks() {
-        mBlanks.clear();
-        for (int i = 0; i < mGameLines; i++) {
-            for (int j = 0; j < mGameLines; j++) {
-                if (mGameMatrix[i][j].getNum() == 0) {
-                    mBlanks.add(new Point(i, j));
-                }
-            }
-        }
-    }
-
-    /**
-     * 初始化View
-     */
-    private void initGameMatrix() {
-        // 初始化矩阵
-        removeAllViews();
-        mScoreHistory = 0;
-        Config.SCROE = 0;
-        Config.mGameLines = Config.mSp.getInt(Config.KEY_GAME_LINES, 4);
-        mGameLines = Config.mGameLines;
-        mGameMatrix = new GameItem[mGameLines][mGameLines];
-        mGameMatrixHistory = new int[mGameLines][mGameLines];
-        mCalList = new ArrayList<Integer>();
-        mBlanks = new ArrayList<Point>();
-        mHighScore = Config.mSp.getInt(Config.KEY_HIGH_SCROE, 0);
-        setColumnCount(mGameLines);
-        setRowCount(mGameLines);
-        setOnTouchListener(this);
-        // 初始化View参数
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager wm = (WindowManager) getContext().getSystemService(
-                Context.WINDOW_SERVICE);
-        Display display = wm.getDefaultDisplay();
-        display.getMetrics(metrics);
-        Config.mItemSize = metrics.widthPixels / Config.mGameLines;
-        initGameView(Config.mItemSize);
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                saveHistoryMatrix();
-                mStartX = (int) event.getX();
-                mStartY = (int) event.getY();
-                break;
-            case MotionEvent.ACTION_MOVE:
-                break;
-            case MotionEvent.ACTION_UP:
-                mEndX = (int) event.getX();
-                mEndY = (int) event.getY();
-                judgeDirection(mEndX - mStartX, mEndY - mStartY);
-                if (isMoved()) {
-                    addRandomNum();
-                    // 修改显示分数
-                    Game.getGameActivity().setScore(Config.SCROE, 0);
-                }
-                checkCompleted();
-                break;
-            default:
-                break;
-        }
-        return true;
     }
 
     /**
@@ -281,9 +285,9 @@ public class GameView extends GridLayout implements OnTouchListener {
             AlertDialog.Builder builder =
                     new AlertDialog.Builder(getContext());
             final EditText et = new EditText(getContext());
-            builder.setTitle("Back Door")
+            builder.setTitle("请输入主角光环")
                     .setView(et)
-                    .setPositiveButton("OK",
+                    .setPositiveButton("确定",
                             new DialogInterface.OnClickListener() {
 
                                 @Override
@@ -296,7 +300,7 @@ public class GameView extends GridLayout implements OnTouchListener {
                                     }
                                 }
                             })
-                    .setNegativeButton("ByeBye",
+                    .setNegativeButton("再见",
                             new DialogInterface.OnClickListener() {
 
                                 @Override

@@ -15,8 +15,7 @@ public class ChatItemListViewAdapter extends BaseAdapter {
     private List<ChatItemListViewBean> mData;
     private LayoutInflater mInflater;
 
-    public ChatItemListViewAdapter(Context context,
-                                   List<ChatItemListViewBean> data) {
+    public ChatItemListViewAdapter(Context context, List<ChatItemListViewBean> data) {
         mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -36,7 +35,7 @@ public class ChatItemListViewAdapter extends BaseAdapter {
         return position;
     }
 
-    //返回第position个Item是何种类型
+    //返回第position个Item是何种类型,用于判断加载哪个布局
     @Override
     public int getItemViewType(int position) {
         ChatItemListViewBean bean = mData.get(position);

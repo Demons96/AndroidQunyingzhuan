@@ -16,13 +16,14 @@ public class VolumeView extends View {
 
     private int mWidth;
 
-    private int mRectWidth;     //矩形的宽
-    private int mRectHeight;    //矩形的高
+    private int mRectWidth;     // 矩形的宽
+    private int mRectHeight;    // 矩形的高
 
     private Paint mPaint;
-    private int mRectCount;     //矩形的个数
-    private int offset = 5;
-    private double mRandom;
+    private int mRectCount;     // 矩形的个数
+    private int offset = 5;     // 偏移量
+    private double mRandom;     // 随机数
+    private double inWidth = 0.8;     // 整个音频占屏幕宽度的百分比
     private LinearGradient mLinearGradient;
 
     public VolumeView(Context context) {
@@ -35,8 +36,7 @@ public class VolumeView extends View {
         initView();
     }
 
-    public VolumeView(Context context, AttributeSet attrs,
-                      int defStyleAttr) {
+    public VolumeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView();
     }
@@ -45,7 +45,7 @@ public class VolumeView extends View {
         mPaint = new Paint();
         mPaint.setColor(Color.BLUE);
         mPaint.setStyle(Paint.Style.FILL);
-        mRectCount = 12;
+        mRectCount = 36;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class VolumeView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = getWidth();
         mRectHeight = getHeight();
-        mRectWidth = (int) (mWidth * 0.6 / mRectCount);
+        mRectWidth = (int) (mWidth * inWidth / mRectCount);
 
         //渐变效果
         mLinearGradient = new LinearGradient(
@@ -68,8 +68,7 @@ public class VolumeView extends View {
     }
 
     /**
-     * @param canvas
-     * 可调用invalidate进行重绘
+     * @param canvas 可调用invalidate进行重绘
      */
     @Override
     protected void onDraw(Canvas canvas) {
@@ -79,12 +78,12 @@ public class VolumeView extends View {
             float currentHeight = (float) (mRectHeight * mRandom);  //每个小矩形的高
 
             canvas.drawRect(
-                    (float) (mWidth * 0.4 / 2 + mRectWidth * i + offset),
+                    (float) (mWidth * (1 - inWidth) / 2 + mRectWidth * i + offset),
                     currentHeight,
-                    (float) (mWidth * 0.4 / 2 + mRectWidth * (i + 1)),
+                    (float) (mWidth * (1 - inWidth) / 2 + mRectWidth * (i + 1)),
                     mRectHeight,
                     mPaint);
         }
-        postInvalidateDelayed(300); //进行View的延迟绘制
+        postInvalidateDelayed(160); //进行View的延迟绘制
     }
 }
