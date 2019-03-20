@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-
 public class MainActivity extends Activity implements View.OnClickListener {
 
     ImageView imageView0;
@@ -19,15 +18,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.image0).setOnClickListener(this);
-        findViewById(R.id.image1).setOnClickListener(this);
-        findViewById(R.id.image2).setOnClickListener(this);
-        findViewById(R.id.image3).setOnClickListener(this);
+        imageView0 = findViewById(R.id.image0);
+        imageView0.setOnClickListener(this);
+        imageView1 = findViewById(R.id.image1);
+        imageView1.setOnClickListener(this);
+        imageView2 = findViewById(R.id.image2);
+        imageView2.setOnClickListener(this);
+        imageView3 = findViewById(R.id.image3);
+        imageView3.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.image0:
                 animate(imageView0);
                 break;
@@ -44,10 +47,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void animate(ImageView imageView) {
-        ((Animatable)imageView.getDrawable()).start();
-//        Drawable drawable = imageView.getDrawable();
-//        if (drawable instanceof Animatable) {
-//            ((Animatable) drawable).start();
-//        }
+//        ((Animatable) imageView.getDrawable()).start();
+
+        Drawable drawable = imageView.getDrawable();
+        if (drawable instanceof Animatable) {
+            ((Animatable) drawable).start();
+        }
     }
 }
