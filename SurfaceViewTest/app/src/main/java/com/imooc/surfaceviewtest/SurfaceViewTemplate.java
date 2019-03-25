@@ -6,9 +6,10 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-// 模板
-public class SurfaceViewTemplate extends SurfaceView
-        implements SurfaceHolder.Callback, Runnable {
+/**
+ * 模板
+ */
+public abstract class SurfaceViewTemplate extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
     // SurfaceHolder
     private SurfaceHolder mHolder;
@@ -38,8 +39,12 @@ public class SurfaceViewTemplate extends SurfaceView
         setFocusable(true);
         setFocusableInTouchMode(true);
         this.setKeepScreenOn(true);
-        //mHolder.setFormat(PixelFormat.OPAQUE);
+        // mHolder.setFormat(PixelFormat.OPAQUE);
+
+        initSurfaceView();
     }
+
+    public abstract void initSurfaceView();
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -66,12 +71,17 @@ public class SurfaceViewTemplate extends SurfaceView
 
     private void draw() {
         try {
+            // 获取 Canvas 对象
             mCanvas = mHolder.lockCanvas();
-            // draw sth
+            SurfaceDraw(mCanvas);
         } catch (Exception e) {
+
         } finally {
             if (mCanvas != null)
+                // 对画布的内容进行提交
                 mHolder.unlockCanvasAndPost(mCanvas);
         }
     }
+
+    public abstract void SurfaceDraw(Canvas canvas);
 }

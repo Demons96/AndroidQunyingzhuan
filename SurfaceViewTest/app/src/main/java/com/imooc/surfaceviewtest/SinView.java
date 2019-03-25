@@ -9,7 +9,9 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-// 画正弦曲线
+/**
+ * 画正弦曲线
+ */
 public class SinView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
     private SurfaceHolder mHolder;
@@ -73,13 +75,13 @@ public class SinView extends SurfaceView implements SurfaceHolder.Callback, Runn
     public void run() {
         while (mIsDrawing) {
             draw();
-            x += 1;
-            y = (int) (100*Math.sin(x * 2 * Math.PI / 180) + 400);
-            mPath.lineTo(x, y);
         }
     }
 
     private void draw() {
+        x += 1;
+        y = (int) (100 * Math.sin(x * 2 * Math.PI / 180) + 400);
+        mPath.lineTo(x, y);
         try {
             mCanvas = mHolder.lockCanvas();
             // SurfaceView背景

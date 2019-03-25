@@ -21,7 +21,10 @@ public class SimpleDraw extends SurfaceView implements SurfaceHolder.Callback, R
 
     private SurfaceHolder mHolder;
     private Canvas mCanvas;
-    private boolean mIsDrawing; //子线程标志位，控制子线程
+    /**
+     * 子线程标志位，控制子线程
+     */
+    private boolean mIsDrawing;
     private Path mPath;
     private Paint mPaint;
 
@@ -35,8 +38,7 @@ public class SimpleDraw extends SurfaceView implements SurfaceHolder.Callback, R
         initView();
     }
 
-    public SimpleDraw(Context context, AttributeSet attrs,
-                      int defStyle) {
+    public SimpleDraw(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initView();
     }
@@ -57,10 +59,11 @@ public class SimpleDraw extends SurfaceView implements SurfaceHolder.Callback, R
         mPaint.setStrokeWidth(40);
     }
 
-    /******************************
-     * SurfaceHolder.Callback接口：*/
+    /**
+     * SurfaceHolder.Callback接口：
+     */
 
-    // 在吃此方法中开启线程
+    // 在此方法中开启线程
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         mIsDrawing = true;
@@ -75,6 +78,7 @@ public class SimpleDraw extends SurfaceView implements SurfaceHolder.Callback, R
     public void surfaceDestroyed(SurfaceHolder holder) {
         mIsDrawing = false;
     }
+
     /******************************/
 
     @Override
